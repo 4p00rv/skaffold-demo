@@ -10,6 +10,8 @@ func hello(res http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	port := ":8080"
+	fmt.Printf("Listening on %s\n", port)
 	http.HandleFunc("/hello", hello)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(port, nil)
 }

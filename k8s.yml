@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-test-webserve
+  namespace: default
+  labels:
+    app: go-test-webserve
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: go-test-webserve
+  template:
+    metadata:
+      labels:
+        app: go-test-webserve
+        version: "latest"
+    spec:
+      containers:
+        - name: go-test-webserve
+          image: go-test:latest
+          imagePullPolicy: "Always"
+          ports:
+            - name: http
+              protocol: TCP
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /hello
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /hello
+              port: http
+          resources:
+            limits:
+              cpu: 100m
+            requests:
+              cpu: 100m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: default
+  name: go-test-webserve
+spec:
+  selector:
+    app: go-test-webserve
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: 8080
