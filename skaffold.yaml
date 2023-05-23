@@ -1,0 +1,17 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: skaffold-demo
+build:
+  local:
+    push: false
+  artifacts:
+    - image: localhost/go-test
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s.yml
+deploy:
+  kubectl:
+    defaultNamespace: "default"

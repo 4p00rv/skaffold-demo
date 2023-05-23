@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: go-test-webserve
-          image: go-test:latest
+          image: localhost/go-test:latest
           imagePullPolicy: "Always"
           ports:
             - name: http
