@@ -2,10 +2,12 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
 func hello(res http.ResponseWriter, req *http.Request) {
+	log.Println("Handling /hello")
 	fmt.Fprintf(res, "hello\n")
 }
 

@@ -9,6 +9,9 @@ build:
     - image: localhost/go-test
       docker:
         dockerfile: Dockerfile
+      hooks:
+        after:
+          - command: ["sh", "-c", "./skaffold-hooks/post-build.sh"]
 manifests:
   rawYaml:
     - k8s.yml

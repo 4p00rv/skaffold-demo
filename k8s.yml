@@ -20,7 +20,7 @@ spec:
       containers:
         - name: go-test-webserve
           image: localhost/go-test:latest
-          imagePullPolicy: "Always"
+          imagePullPolicy: "IfNotPresent"
           ports:
             - name: http
               protocol: TCP
