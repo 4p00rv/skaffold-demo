@@ -18,3 +18,7 @@ manifests:
 deploy:
   kubectl:
     defaultNamespace: "default"
+    hooks:
+      before:
+        - host:
+            command: ["sh", "-c", "./skaffold-hooks/pre-deploy.sh"]
