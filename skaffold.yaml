@@ -22,3 +22,9 @@ deploy:
       before:
         - host:
             command: ["sh", "-c", "./skaffold-hooks/pre-deploy.sh"]
+portForward:
+- resourceType: deployment
+  resourceName: go-test-webserve
+  namespace: default
+  port: 8080
+  address: 0.0.0.0
